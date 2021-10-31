@@ -29,11 +29,10 @@ fn count_words(ch: &Chapter) -> usize {
 }
 
 fn get_config(ctx: &RenderContext) -> WordcountConfig {
-    return ctx
-        .config
+    ctx.config
         .get_deserialized_opt("output.wordcount")
         .unwrap()
-        .unwrap();
+        .unwrap()
 }
 
 fn main() {
@@ -49,6 +48,12 @@ fn main() {
         if let BookItem::Chapter(ref ch) = *item {
             if cfg.ignores.contains(&ch.name) {
                 continue;
+            }
+
+            for parent in ch.parent_names.clone() {
+                if cfg.ignores.contains(&parent) {
+                    continue;
+                }
             }
 
             let words = count_words(ch);
