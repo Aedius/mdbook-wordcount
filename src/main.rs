@@ -44,15 +44,16 @@ fn main() {
 
     let mut total_words = 0;
 
-    for item in ctx.book.iter() {
+    'outer: for item in ctx.book.iter() {
         if let BookItem::Chapter(ref ch) = *item {
             if cfg.ignores.contains(&ch.name) {
-                continue;
+                continue 'outer;
             }
 
             for parent in ch.parent_names.clone() {
+                println!("{:?} -- {}",cfg.ignores, parent);
                 if cfg.ignores.contains(&parent) {
-                    continue;
+                    continue 'outer;
                 }
             }
 
