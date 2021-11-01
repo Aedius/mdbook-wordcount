@@ -51,7 +51,6 @@ fn main() {
             }
 
             for parent in ch.parent_names.clone() {
-                println!("{:?} -- {}",cfg.ignores, parent);
                 if cfg.ignores.contains(&parent) {
                     continue 'outer;
                 }
