@@ -58,11 +58,9 @@ fn main() {
 
             let words = count_words(ch);
             total_words += words;
-            println!("{}: {}", ch.name, words);
             writeln!(f, "{}: {}", ch.name, words).unwrap();
         }
     }
-    println!("---------");
     println!("Total: {}", total_words);
     writeln!(f, "Total : {}", total_words).unwrap();
 }
